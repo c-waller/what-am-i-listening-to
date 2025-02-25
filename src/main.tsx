@@ -1,18 +1,18 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-// import './styles/styles.css';
-import App from './pages/App.tsx';
-import QuizPage from './pages/QuizPage.tsx';
+import './styles/styles.css';
+import Landing from './pages/Landing.tsx';
+import Authenticate from './pages/Authenticate.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,  // This is your main page
+    element: <Landing />,
   },
   {
-    path: "/quiz", // This is the path for the quiz page
-    element: <QuizPage />, // This is the component that will be displayed when navigating to /quiz
+    path: "/quiz",
+    element: <Authenticate />,
   },
 ]);
 
