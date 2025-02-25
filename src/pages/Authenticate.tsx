@@ -10,7 +10,7 @@ function Authenticate()
   return (
     <div className="container">
       {/* Only show AuthenticatinBox when showBox is True (after 3 seconds)*/}
-      {showBox ? (<AuthenticationBox />) : (<p id="content">🤔 Let's Get Started...</p>)}
+      {showBox ? (<AuthenticationBox />) : (<p id="content">🤔 Let's get you started...</p>)}
     </div>
   );
 }

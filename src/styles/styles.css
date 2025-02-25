@@ -20,14 +20,26 @@ body{
 {
     font-size: 55px;
     text-align: center;
+    cursor: default;
     margin: 0;
+}
+
+#title-text
+{
+    color: black;
+    transition: color 0.5s ease;
+}
+
+#title-text:hover
+{
+    color: rgb(92, 92, 92);
 }
 
 #content
 {
     text-align: center;
     font-size: 19px;
-    margin: 45px;
+    margin: 55px;
 }
 
 #quiz-button
