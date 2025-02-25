@@ -4,8 +4,10 @@ function App()
   return (
     <div className="container">
 
-      <h1>What Am I Listening To?</h1>
-
+      <h1 id ="title"> What Music Am I <br /> Even Listening To? </h1>
+      <p id ="artists"> Come test your knowledge of your <br />personal taste in tunes... <br /></p>
+      <button id="quiz-button"> Let's Go! </button>
+      
     </div>
   )
 }
