@@ -1,4 +1,5 @@
 import '../styles/styles.css';
+import TitleSpan from '../components/TitleSpan';
 import { useNavigate } from 'react-router-dom';
 
 function Landing() 
@@ -7,9 +8,19 @@ function Landing()
   
   return (
     <div className="container">
-      <h1 id ="title"> <span id = "title-text">What </span><span id = "title-text">Music</span><span id = "title-text"> Am </span> <span id = "title-text"> I </span><br /> <span id = "title-text"> Even </span><span id = "title-text">Listening</span> <span id = "title-text"> To</span><span id = "title-text">?</span></h1>
+      <h1 id ="title"> 
+      <TitleSpan>What </TitleSpan>
+      <TitleSpan>Music</TitleSpan>
+      <TitleSpan> Am </TitleSpan>
+      <TitleSpan> I </TitleSpan>
+      <br />
+      <TitleSpan> Even </TitleSpan>
+      <TitleSpan>Listening </TitleSpan>
+      <TitleSpan> To</TitleSpan>
+      <TitleSpan>?</TitleSpan>
+      </h1>
       <p id="content"> Let's test your knowledge of your personal taste in <span id = "note-emoji"> 🎵 </span><br /></p>
-      <button id="quiz-button" onClick={() => {navigate('/quiz')}}> Are You Ready? </button>
+      <button id="quiz-button" type='button' onClick={() => {navigate('/quiz')}}> Are You Ready? </button>
     </div>
   )
 }
