@@ -65,7 +65,7 @@ body
     cursor: pointer;
 }
 
-#note-emoji   
+.animated-emoji
 {
     animation-name: wave-animation;
     animation-duration: 5s;        

@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
-interface TitleSpanProps {
+type TitleSpanProps = {
     children: ReactNode;
-}
+};
 
 function TitleSpan({ children }: TitleSpanProps) 
 {
