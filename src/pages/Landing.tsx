@@ -6,23 +6,22 @@ import { useNavigate } from 'react-router-dom';
 
 function Landing() 
 {
-  let navigate = useNavigate(); // Create new navigation function
-  
+  const navigate = useNavigate();
   return (
     <div className="container">
       <h1 id ="title"> 
-      <TitleSpan>What </TitleSpan>
-      <TitleSpan>Music</TitleSpan>
+      <TitleSpan> What </TitleSpan>
+      <TitleSpan> Music </TitleSpan>
       <TitleSpan> Am </TitleSpan>
       <TitleSpan> I </TitleSpan>
       <br />
       <TitleSpan> Even </TitleSpan>
-      <TitleSpan>Listening </TitleSpan>
-      <TitleSpan> To</TitleSpan>
-      <TitleSpan>?</TitleSpan>
+      <TitleSpan> Listening </TitleSpan>
+      <TitleSpan> To </TitleSpan>
+      <TitleSpan> ? </TitleSpan>
       </h1>
       <p id="content"> Let's test your knowledge of your personal taste in <AnimatedEmoji> 🎵 </AnimatedEmoji><br /></p>
-      <button id="quiz-button" type='button' onClick={() => {navigate('/quiz')}}> Are You Ready? </button>
+      <button id="quiz-button" type='button' onClick={() => navigate('/quiz')}> Are You Ready? </button>
     </div>
   )
 }

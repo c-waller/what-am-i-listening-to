@@ -1,23 +1,16 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles/styles.css';
-import Landing from './pages/Landing.tsx';
-import Authenticate from './pages/Authenticate.tsx';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from "react";
+// import { StrictMode } from 'react'
+// import { createRoot } from 'react-dom/client'
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import App from './App.tsx'
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Landing />,
-  },
-  {
-    path: "/quiz",
-    element: <Authenticate />,
-  },
-]);
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <Router>
+      <Routes>
+        <Route path="/*" element={<App />} />
+      </Routes>
+    </Router>
+  </React.StrictMode>
 );
