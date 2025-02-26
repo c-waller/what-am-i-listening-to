@@ -2,6 +2,7 @@ import '../styles/styles.css';
 import TitleSpan from '../components/TitleSpan';
 import AnimatedEmoji from '../components/AnimatedEmoji';
 import { useNavigate } from 'react-router-dom';
+import transition from '../transitions';
 
 
 function Landing() 
@@ -25,4 +26,4 @@ function Landing()
     </div>
   )
 }
-export default Landing
+export default transition(Landing);
