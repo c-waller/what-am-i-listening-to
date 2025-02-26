@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import AuthenticationBox from '../components/AuthenticationBox';
 import '../styles/styles.css';
-import transition from '../transitions';
+import slideOut from '../transitions/slideOut';
 
 function Authenticate()
 {
@@ -15,4 +15,4 @@ function Authenticate()
     </div>
   );
 }
-export default transition(Authenticate);
+export default Authenticate;
