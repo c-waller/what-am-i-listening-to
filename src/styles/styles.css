@@ -73,7 +73,7 @@ body
     transform-origin: 50%;       
     display: inline-block;
 }
-  
+
 @keyframes wave-animation 
 {
     0% { transform: rotate( 0.0deg) }
@@ -86,7 +86,8 @@ body
   100% { transform: rotate( 0.0deg) }
 }
 
-.slide-in{
+.slide-in
+{
     position: fixed;
     top:0;
     left:0;
@@ -96,7 +97,8 @@ body
     transform-origin: bottom;
 }
 
-.slide-out{
+.slide-out
+{
     position: fixed;
     top:0;
     left:0;

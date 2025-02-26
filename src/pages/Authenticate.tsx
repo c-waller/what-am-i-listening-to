@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import AuthenticationBox from '../components/AuthenticationBox';
-import '../styles/styles.css';
 import slideOut from '../transitions/slideOut';
+import '../styles/styles.css';
 
 function Authenticate()
 {

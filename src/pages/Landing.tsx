@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/styles.css';
 import TitleSpan from '../components/TitleSpan';
 import AnimatedEmoji from '../components/AnimatedEmoji';
 import slideIn from '../transitions/slideIn';
+import '../styles/styles.css';
 
 function Landing() 
 {
   const navigate = useNavigate();
   const [shouldTransition, setShouldTransition] = useState(false);
 
-  function handleClick() 
+  function handleClick(): void
   {
     setShouldTransition(true); // Enable transition
     setTimeout(() => navigate('/quiz'), 1500); // Navigate after transition duration
