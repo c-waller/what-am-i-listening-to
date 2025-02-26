@@ -2,7 +2,8 @@ import { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 
-const slideOut = (OgComponent: ComponentType) => {
+function slideOut(OgComponent: ComponentType)
+{
     return () => (
         <>
             <OgComponent />
