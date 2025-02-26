@@ -13,9 +13,9 @@ function Landing()
   function handleClick() 
   {
     setShouldTransition(true); // Enable transition
-    setTimeout(() => navigate('/quiz'), 2500); // Navigate after transition duration
+    setTimeout(() => navigate('/quiz'), 1500); // Navigate after transition duration
   }
-  
+
   const LandingContent = (
     <div className="container">
       <h1 id="title"> 

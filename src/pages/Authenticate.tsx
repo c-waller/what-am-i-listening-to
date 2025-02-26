@@ -15,4 +15,4 @@ function Authenticate()
     </div>
   );
 }
-export default Authenticate;
+export default slideOut(Authenticate);
