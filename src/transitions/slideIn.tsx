@@ -1,6 +1,6 @@
 import { ComponentType } from "react";
-import { motion } from "motion/react"
-import { AnimatePresence } from "motion/react";
+import { motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion";
 
 function slideIn(OgComponent: ComponentType)
 {
