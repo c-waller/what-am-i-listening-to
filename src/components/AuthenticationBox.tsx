@@ -1,5 +1,5 @@
 function AuthenticationBox()
 {
-  return <p id="content">Authentication Box Here!</p>;
+  return <button id="auth-button">Login with Spotify <img src="src/assets/images/spotify-logo.png" width={100}></img> </button>
 }
 export default AuthenticationBox;

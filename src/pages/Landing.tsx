@@ -19,7 +19,7 @@ function Landing()
   const LandingContent = (
     <>
     <div className="image-container">
-      <img src="src/assets/vinylcover.png" width={1500} className="floating-image" />
+      <img src="src/assets/images/vinyl-albums.png" width={1500} className="floating-image" />
     </div>
     <div className="container-landing">
       <h1 id="title"> 

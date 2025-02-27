@@ -56,7 +56,6 @@ body
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-    cursor: pointer;
 }
 
 #quiz-button:hover 
@@ -112,7 +111,7 @@ body
 {
     position: absolute;
     transform: translateX(-50%);
-    top: 0%;
+    top: -3%;
     left: 50%;
     pointer-events: none;
 }
