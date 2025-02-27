@@ -1,0 +1,46 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Helvetica, sans-serif;
+}
+
+.container-authentication
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(246, 246, 246, 0.957);
+}
+
+#content
+{
+    text-align: center;
+    font-size: 19px;
+    margin: 55px;
+}
+
+.slide-in
+{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100vh;
+    background: black;
+    transform-origin: bottom;
+}
+
+.slide-out
+{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100vh;
+    background: black;
+    transform-origin: top;
+}

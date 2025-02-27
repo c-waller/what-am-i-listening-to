@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import TitleSpan from '../components/TitleSpan';
 import AnimatedEmoji from '../components/AnimatedEmoji';
 import slideIn from '../transitions/slideIn';
-import '../styles/styles.css';
+import '../styles/landing.css';
 
 function Landing() 
 {
@@ -17,7 +17,11 @@ function Landing()
   }
 
   const LandingContent = (
-    <div className="container">
+    <>
+    <div className="image-container">
+      <img src="src/assets/vinylcover.png" width={1500} className="floating-image" />
+    </div>
+    <div className="container-landing">
       <h1 id="title"> 
         <TitleSpan> What </TitleSpan>
         <TitleSpan> Music </TitleSpan>
@@ -34,6 +38,7 @@ function Landing()
       </p>
       <button id="quiz-button" type='button' onClick={handleClick}> Are You Ready? </button>
     </div>
+    </>
   );
   return shouldTransition ? slideIn(() => LandingContent)() : LandingContent;
 }

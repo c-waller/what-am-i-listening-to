@@ -6,13 +6,12 @@ body
     font-family: Helvetica, sans-serif;
 }
 
-.container
+.container-landing
 {
     height: 100vh;
-    font-size: xx-large;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-top: 180px;
     flex-direction: column;
     background-color: rgba(246, 246, 246, 0.957);
 }
@@ -107,4 +106,13 @@ body
     height:100vh;
     background: black;
     transform-origin: top;
+}
+
+.floating-image
+{
+    position: absolute;
+    transform: translateX(-50%);
+    top: 0%;
+    left: 50%;
+    pointer-events: none;
 }

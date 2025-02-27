@@ -2,7 +2,7 @@ import {Routes, Route, useLocation} from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Authenticate from "./pages/Authenticate";
 import Landing from "./pages/Landing";
-import "./styles/styles.css"
+import "./styles/landing.css"
 
 function App() 
 {
