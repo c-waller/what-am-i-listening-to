@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TitleSpan from '../components/TitleSpan';
-import AnimatedEmoji from '../components/AnimatedEmoji';
 import slideIn from '../transitions/slideIn';
 import '../styles/landing.css';
 
@@ -34,9 +33,9 @@ function Landing()
         <TitleSpan>?</TitleSpan>
       </h1>
       <p id="content">
-        Let's test your personal taste in music. Do you have what it takes?<br />
+        Let's test your knowledge of your personal taste in music.<br />
       </p>
-      <button id="quiz-button" type='button' onClick={handleClick}> Are You Ready? </button>
+      <button id="quiz-button" type='button' onClick={handleClick}> Let's Get Started </button>
     </div>
     </>
   );
