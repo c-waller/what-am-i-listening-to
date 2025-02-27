@@ -4,6 +4,7 @@ body
     padding: 0;
     overflow: hidden;
     font-family: Helvetica, sans-serif;
+    background-color: rgba(246, 246, 246, 0.957);
 }
 
 .container-landing
@@ -11,14 +12,13 @@ body
     height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: 180px;
+    padding-top: 165px;
     flex-direction: column;
-    background-color: rgba(246, 246, 246, 0.957);
 }
 
 #title
 {
-    font-size: 55px;
+    font-size: 75px;
     text-align: center;
     cursor: default;
     margin: 0;

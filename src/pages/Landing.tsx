@@ -34,7 +34,7 @@ function Landing()
         <TitleSpan>?</TitleSpan>
       </h1>
       <p id="content">
-        Let's see what your personal taste in <AnimatedEmoji> 🎵 </AnimatedEmoji> is.<br />
+        Let's test your personal taste in music. Do you have what it takes?<br />
       </p>
       <button id="quiz-button" type='button' onClick={handleClick}> Are You Ready? </button>
     </div>
