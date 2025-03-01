@@ -1,0 +1,69 @@
+.container-authentication
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#content
+{
+    text-align: center;
+    font-size: 19px;
+    margin: 55px;
+}
+
+#auth-button
+{
+    display: flex;
+    align-items: center;
+    gap:19px;
+
+
+    background-color: #0d0d0d;
+    border: thin solid black;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 18px 32px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+a
+{
+    text-decoration: none;
+}
+
+#auth-button:hover 
+{
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.slide-in
+{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100vh;
+    background: rgba(246, 246, 246, 0.957);
+    transform-origin: bottom;
+}
+
+.slide-out
+{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100vh;
+    background: rgba(246, 246, 246, 0.957);
+    transform-origin: top;
+}

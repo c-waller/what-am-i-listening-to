@@ -1,4 +1,5 @@
-.containerLanding { /* No #id, use class instead */
+.containerLanding 
+{
     height: 100vh;
     display: flex;
     align-items: center;
@@ -6,29 +7,24 @@
     flex-direction: column;
 }
 
-.title { /* No #id, use class */
+.title 
+{
     font-size: 75px;
     text-align: center;
     cursor: default;
     margin: 0;
-}
-
-.titleText {
     color: black;
-    transition: color 0.5s ease;
 }
 
-.titleText:hover {
-    color: rgb(92, 92, 92);
-}
-
-.content {
+.content 
+{
     text-align: center;
     font-size: 19px;
     margin: 55px;
 }
 
-.quizButton { /* No #id, use class */
+.quizButton 
+{ 
     background-color: #0d0d0d;
     border: thin solid black;
     border-radius: 10px;
@@ -41,12 +37,14 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-.quizButton:hover {
+.quizButton:hover 
+{
     box-shadow: none;
     cursor: pointer;
 }
 
-.floatingImage {
+.floatingImage 
+{
     position: absolute;
     transform: translateX(-50%);
     top: -20px;

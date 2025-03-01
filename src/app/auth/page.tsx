@@ -1,12 +1,10 @@
 import Image from "next/image";
-import styles from "./page.module.css";
-import TitleSpan from "@/components/TitleSpan";
+import styles from "./auth.module.css";
+import AuthButton from "@/components/AuthButton";
 
 export default function Home() 
 {
   return (
-    <>
-      <p> This is the content page </p>
-    </>
+    <AuthButton />
   );
 }

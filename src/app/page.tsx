@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import TitleSpan from "@/components/TitleSpan";
 
 export default function Home() {
   return (
@@ -12,20 +11,8 @@ export default function Home() {
         />
       </div>
       <div className={styles.containerLanding}>
-        <h1 className={styles.title}>
-          <TitleSpan> What </TitleSpan>
-          <TitleSpan> Music </TitleSpan>
-          <TitleSpan> Am </TitleSpan>
-          <TitleSpan> I </TitleSpan>
-          <br/>
-          <TitleSpan> Even </TitleSpan>
-          <TitleSpan> Listening </TitleSpan>
-          <TitleSpan> To</TitleSpan>
-          <TitleSpan>?</TitleSpan>
-        </h1>
-        <p className={styles.content}>
-          Analyze your personal taste in music.
-        </p>
+        <h1 className={styles.title}> What Music Am I <br/> Even Listening To? </h1>
+        <p className={styles.content}> Analyze your personal taste in music. </p>
         <button className={styles.quizButton} type="button"> Let's Get Started </button>
       </div>
     </>
