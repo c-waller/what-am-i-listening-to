@@ -1,5 +1,5 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,7 +13,9 @@ export default function Home() {
       <div className={styles.containerLanding}>
         <h1 className={styles.title}> What Music Am I <br/> Even Listening To? </h1>
         <p className={styles.content}> Analyze your personal taste in music. </p>
-        <button className={styles.quizButton} type="button"> Let's Get Started </button>
+        <Link href="/auth">
+          <button className={styles.quizButton} type="button"> Let's Get Started </button>
+        </Link>
       </div>
     </>
   );
