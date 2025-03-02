@@ -51,10 +51,10 @@ export async function GET(req: NextRequest)
     // ---------------------------------------------------------------------------------------------|
 
     const responseData = await response.json();
-    const { access_token, refresh_token } = responseData; // destructure tokens
+    const { access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn } = responseData; // destructure tokens
     const userResponse = await fetch("https://api.spotify.com/v1/me", // fetch user profile
     {
-      headers: { Authorization: `Bearer ${access_token}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
     
     if (!userResponse.ok) // user fetch failure
@@ -64,18 +64,20 @@ export async function GET(req: NextRequest)
 
     const userData = await userResponse.json();
     const spotifyUserId = userData.id;
+    const spotifyUserDisplayName = userData.display_name;
 
     // store access and refresh tokens in Firestore
     const userRef = doc(database, "users", spotifyUserId);
     const existingUser = await getDoc(userRef);
+    const accessTokenExpiresAt = Date.now() + expiresIn * 1000; // seconds (expiresIn) -> milliseconds (Date.now)
 
     if (existingUser.exists())
     {
-      await setDoc(userRef, { access_token, refresh_token }, { merge: true });
+      await setDoc(userRef, { spotifyUserDisplayName, accessToken, refreshToken, accessTokenExpiresAt }, { merge: true });
     } 
     else 
     {
-      await setDoc(userRef, { access_token, refresh_token, spotifyUserId });
+      await setDoc(userRef, { spotifyUserId, spotifyUserDisplayName, accessToken, refreshToken, accessTokenExpiresAt});
     }
     // redirect to dashboard after storing tokens
     return NextResponse.redirect("http://localhost:3000/dashboard");
