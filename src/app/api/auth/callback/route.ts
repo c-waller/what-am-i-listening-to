@@ -71,6 +71,16 @@ export async function GET(req: NextRequest)
     const existingUser = await getDoc(userRef);
     const accessTokenExpiresAt = Date.now() + expiresIn * 1000; // seconds (expiresIn) -> milliseconds (Date.now)
 
+    // store userID in a cookie
+    const cookieStore = await cookies();
+    cookieStore.set("userID", spotifyUserId, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      expires: new Date(accessTokenExpiresAt), // matches token expiry 
+      path: '/', 
+    })
+    
     if (existingUser.exists())
     {
       await setDoc(userRef, { spotifyUserDisplayName, accessToken, refreshToken, accessTokenExpiresAt }, { merge: true });
