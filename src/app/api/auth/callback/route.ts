@@ -8,26 +8,28 @@ export async function GET(req: NextRequest)
 
   if (!code) 
   {
-    return NextResponse.json({ error: "Authorization code is missing" }, { status: 400 });
+    // return NextResponse.json({ error: "Authorization code is missing" }, { status: 400 });
+    return NextResponse.redirect("http://localhost:3000");
   }
 
   const cookieStore = await cookies();
-  const codeVerifier = cookieStore.get("codeVerifier")?.value;
+  const codeVerifier = cookieStore.get("codeVerifier")?.value; // retrieve the cookie we stored
 
-  if (!codeVerifier) 
+  if (!codeVerifier) // typically only fails because our cookie expired
   {
-    return NextResponse.json({ error: "Code verifier is missing" }, { status: 400 });
+    // return NextResponse.json({ error: "Code verifier is missing" }, { status: 400 });
+    return NextResponse.redirect("http://localhost:3000");
   }
 
-  // Prepare the Authorization header with the correct format
+  // prepare the authorization header -> base64(clientId:clientSecret)
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET!;
   const base64Auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
   const authHeader = `Basic ${base64Auth}`;
-
+ 
   try 
   {
-    // Exchange authorization code for access token
+    // exchange authorization code for access token
     const response = await fetch("https://accounts.spotify.com/api/token", 
     {
       method: "POST",
@@ -40,26 +42,25 @@ export async function GET(req: NextRequest)
       }),
     });
 
-    if (!response.ok) 
+    if (!response.ok)
     {
       const errorData = await response.json();
-      return NextResponse.json(
-        { error: errorData.error_description || "Failed to exchange token" },
-        { status: response.status }
-      );
+      // return NextResponse.json(
+      //   { error: errorData.error_description || "Failed to exchange token" },
+      //   { status: response.status }
+      // );
+      return NextResponse.redirect("http://localhost:3000");
     }
     const responseData = await response.json();
     const { access_token, refresh_token } = responseData;
-
-    // If token exchange is successful, return success message
-    return NextResponse.json({ success: true, access_token, refresh_token }, { status: 200 });
+    // return NextResponse.json({ success: true, access_token, refresh_token }, { status: 200 }); // success!!!
+    // WILL DO FIREBASE STUFF HERE!!!!!!!
+    return NextResponse.redirect("http://localhost:3000/dashboard");
   } 
+  
   catch (error: any) 
   {
-    console.error("Error exchanging token:", error.message);
-    return NextResponse.json(
-      { error: "Failed to exchange token" },
-      { status: 500 }
-    );
+    // return NextResponse.json({ error: "Failed to exchange token" }, { status: 500 });
+    return NextResponse.redirect("http://localhost:3000");
   }
 }
