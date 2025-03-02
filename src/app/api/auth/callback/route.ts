@@ -1,31 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { database } from "@/lib/firebase.config";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export async function GET(req: NextRequest) 
 {
   const { searchParams } = new URL(req.url);
-  const code = searchParams.get("code");
+  const code = searchParams.get("code"); // seach for code and extract it from url of req
 
-  if (!code) 
+  if (!code) // code not in url, 9 times out of 10 shouldn't happen
   {
-    // return NextResponse.json({ error: "Authorization code is missing" }, { status: 400 });
     return NextResponse.redirect("http://localhost:3000");
   }
 
   const cookieStore = await cookies();
-  const codeVerifier = cookieStore.get("codeVerifier")?.value; // retrieve the cookie we stored
+  const codeVerifier = cookieStore.get("codeVerifier")?.value; // retrieve the cookie we stored, check login api route for more details
 
   if (!codeVerifier) // typically only fails because our cookie expired
   {
-    // return NextResponse.json({ error: "Code verifier is missing" }, { status: 400 });
     return NextResponse.redirect("http://localhost:3000");
   }
 
-  // prepare the authorization header -> base64(clientId:clientSecret)
+  // prepare the authorization header -> "Basic base64(clientId:clientSecret)"
   const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID!;
   const clientSecret = process.env.SPOTIFY_CLIENT_SECRET!;
   const base64Auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
-  const authHeader = `Basic ${base64Auth}`;
  
   try 
   {
@@ -33,7 +32,7 @@ export async function GET(req: NextRequest)
     const response = await fetch("https://accounts.spotify.com/api/token", 
     {
       method: "POST",
-      headers: {"Content-Type": "application/x-www-form-urlencoded", "Authorization": authHeader},
+      headers: {"Content-Type": "application/x-www-form-urlencoded", "Authorization": `Basic ${base64Auth}`},
       body: new URLSearchParams({
         grant_type: "authorization_code",
         code: code,
@@ -42,25 +41,47 @@ export async function GET(req: NextRequest)
       }),
     });
 
-    if (!response.ok)
+    if (!response.ok) // token exchange failure
     {
-      const errorData = await response.json();
-      // return NextResponse.json(
-      //   { error: errorData.error_description || "Failed to exchange token" },
-      //   { status: response.status }
-      // );
       return NextResponse.redirect("http://localhost:3000");
     }
+
+    // ---------------------------------------------------------------------------------------------|
+    //                                        USER DATA                                             |
+    // ---------------------------------------------------------------------------------------------|
+
     const responseData = await response.json();
-    const { access_token, refresh_token } = responseData;
-    // return NextResponse.json({ success: true, access_token, refresh_token }, { status: 200 }); // success!!!
-    // WILL DO FIREBASE STUFF HERE!!!!!!!
+    const { access_token, refresh_token } = responseData; // destructure tokens
+    const userResponse = await fetch("https://api.spotify.com/v1/me", // fetch user profile
+    {
+      headers: { Authorization: `Bearer ${access_token}` },
+    });
+    
+    if (!userResponse.ok) // user fetch failure
+    {
+      return NextResponse.redirect("http://localhost:3000");
+    }
+
+    const userData = await userResponse.json();
+    const spotifyUserId = userData.id;
+
+    // store access and refresh tokens in Firestore
+    const userRef = doc(database, "users", spotifyUserId);
+    const existingUser = await getDoc(userRef);
+
+    if (existingUser.exists())
+    {
+      await setDoc(userRef, { access_token, refresh_token }, { merge: true });
+    } 
+    else 
+    {
+      await setDoc(userRef, { access_token, refresh_token, spotifyUserId });
+    }
+    // redirect to dashboard after storing tokens
     return NextResponse.redirect("http://localhost:3000/dashboard");
   } 
-  
-  catch (error: any) 
+  catch (error: any) // this is the end of my huge try, something must've gone wrong
   {
-    // return NextResponse.json({ error: "Failed to exchange token" }, { status: 500 });
     return NextResponse.redirect("http://localhost:3000");
   }
 }
