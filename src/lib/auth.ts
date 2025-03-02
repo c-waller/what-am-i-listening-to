@@ -14,7 +14,7 @@ async function getVerifierAndChallenge(): Promise<{ codeVerifier: string; codeCh
     }
 }
 
-export default async function getSpotifyLoginUrl(): Promise<{url: string} | null>
+export default async function getSpotifyLoginUrl(): Promise<{url: string, codeVerifier: string} | null>
 {    
     const scopes = [
         "playlist-read-private",
@@ -35,5 +35,5 @@ export default async function getSpotifyLoginUrl(): Promise<{url: string} | null
     }
     const {codeVerifier, codeChallenge} = verifierAndChallenge;
     const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=code&code_challenge_method=S256&code_challenge=${codeChallenge}`;
-    return { url: loginUrl };
+    return { url: loginUrl, codeVerifier: codeVerifier };
 }

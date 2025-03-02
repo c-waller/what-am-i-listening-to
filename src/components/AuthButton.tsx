@@ -12,7 +12,7 @@ export default function AuthButton()
     const authData = await getSpotifyLoginUrl();
     if (authData)
     {
-      // I'll store the code verifier in local storage here later
+      sessionStorage.setItem("codeVerifier", authData.codeVerifier);
       setTimeout(() => {window.location.href = authData.url;}, 1000);
     }
   }
