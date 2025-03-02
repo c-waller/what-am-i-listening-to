@@ -21,3 +21,8 @@
     box-shadow: none;
     cursor: pointer;
   }
+
+  .buttonLink
+  {
+    text-decoration: none;
+  }

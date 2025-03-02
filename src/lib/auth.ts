@@ -9,8 +9,31 @@ async function getVerifierAndChallenge(): Promise<{ codeVerifier: string; codeCh
     } 
     catch (error) 
     {
-        console.error("Error generating PKCE challenge:", error);
+        console.error("Error generating PKCE challenge: ", error);
         return null;
     }
 }
 
+export default async function getSpotifyLoginUrl(): Promise<{url: string} | null>
+{    
+    const scopes = [
+        "playlist-read-private",
+        "user-read-private", // account type
+        "user-read-recently-played",
+        "user-library-read", 
+        "user-follow-read",
+        "user-top-read"
+    ];
+    const authEndpoint = "https://accounts.spotify.com/authorize";
+    const redirectUri = "http://localhost:3000/dashboard";
+    const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+    const verifierAndChallenge = await getVerifierAndChallenge();
+      
+    if (!verifierAndChallenge) // failure
+    {
+        return null;
+    }
+    const {codeVerifier, codeChallenge} = verifierAndChallenge;
+    const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=code&code_challenge_method=S256&code_challenge=${codeChallenge}`;
+    return { url: loginUrl };
+}
