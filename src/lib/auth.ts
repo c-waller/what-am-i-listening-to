@@ -9,7 +9,7 @@ async function getVerifierAndChallenge(): Promise<{ codeVerifier: string; codeCh
     } 
     catch (error) 
     {
-        console.error("Error generating PKCE challenge: ", error);
+        console.error("Error generating PKCE pair: ", error);
         return null;
     }
 }
@@ -25,7 +25,7 @@ export default async function getSpotifyLoginUrl(): Promise<{url: string, codeVe
         "user-top-read"
     ];
     const authEndpoint = "https://accounts.spotify.com/authorize";
-    const redirectUri = "http://localhost:3000/dashboard";
+    const redirectUri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URI;
     const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
     const verifierAndChallenge = await getVerifierAndChallenge();
       

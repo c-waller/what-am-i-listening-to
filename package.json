@@ -11,7 +11,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@studio-freight/react-lenis": "^0.0.47",
-    "axios": "^1.8.1",
+    "base-64": "^1.0.0",
     "firebase": "^11.4.0",
     "gsap": "^3.12.7",
     "lenis": "^1.1.22",
@@ -22,6 +22,7 @@
     "split-type": "^0.3.4"
   },
   "devDependencies": {
+    "@types/base-64": "^1.0.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

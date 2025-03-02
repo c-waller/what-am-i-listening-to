@@ -1,7 +1,6 @@
-"use client"; 
+"use client"
 import { useState } from "react";
 import styles from "./AuthButton.module.css";
-import getSpotifyLoginUrl from "@/lib/auth";
 
 export default function AuthButton() 
 {
@@ -9,12 +8,7 @@ export default function AuthButton()
   async function handleClick()
   {
     setLoading(true);
-    const authData = await getSpotifyLoginUrl();
-    if (authData)
-    {
-      sessionStorage.setItem("codeVerifier", authData.codeVerifier);
-      setTimeout(() => {window.location.href = authData.url;}, 1000);
-    }
+    setTimeout(() => window.location.href = "/api/auth/login", 1500); // call our login api route on button click
   }
   return (
       <button className={styles.authButton} onClick={handleClick}>
