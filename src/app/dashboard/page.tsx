@@ -28,7 +28,7 @@ export default function Home()
 
   return (
       <div className={styles.pageContainer} ref={container}>
-        <AnimatedText text={`Welcome, ${displayName}`} />
+        <AnimatedText text={`Welcome, ${displayName}!`} />
       </div>
   );
 }

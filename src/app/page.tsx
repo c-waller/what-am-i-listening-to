@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Link from "next/link";
+import MainButton from "@/components/MainButton";
 
 export default function Home() 
 {
@@ -15,7 +16,7 @@ export default function Home()
         <h1 className={styles.title}> What Music Am I <br/> Even Listening To? </h1>
         <p className={styles.content}> Analyze your personal taste in music. </p>
         <Link href="/auth">
-          <button className={styles.quizButton} type="button"> Let's Get Started </button>
+          <MainButton> Let's Get Started </MainButton>
         </Link>
       </div>
     </>
