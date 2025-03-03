@@ -9,18 +9,13 @@
     font-family: Helvetica, sans-serif;
 }
 
-.imagesContainer
+/* .imagesContainer
 {
     display: flex;
     gap: 80px;
 }
 
-.title
-{
-    visibility: hidden;
-}
-
 .images
 {
     border-radius: 50%;
-}
+} */

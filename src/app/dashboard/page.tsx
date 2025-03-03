@@ -1,50 +1,34 @@
-"use client";
-
-import { useRef, useEffect } from "react";
+"use client"
+import { useRef } from "react";
+import { useEffect, useState } from "react";
+import AnimatedText from "@/components/AnimatedText";
 import styles from "./dashboard.module.css";
-import ReactLenis from "lenis/react";
-import gsap from "gsap";
-import SplitType from "split-type";
 
 export default function Home() 
 {
-  const container = useRef(null);
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
-
-  useEffect(() => 
+  async function fetchDisplayName() 
   {
-    if (typeof window === "undefined" || !titleRef.current) return;
+    try 
+    {
+      const response = await fetch("/api/user");
+      const data = await response.json();
+      return data.displayName;
+    } 
+    catch (error) 
+    {
+      console.error("Error fetching display name:", error);
+    }
+  }
+  const [displayName, setDisplayName] = useState("user");
+  const container = useRef(null);
 
-    const heroText = new SplitType(titleRef.current, { types: "chars" });
-
-    // fade in animation
-    gsap.set(heroText.chars, { y: 600, opacity: 1, visibility:"visible" });
-
-    gsap.to(heroText.chars, {
-      y: 0,
-      duration: 1.4,
-      stagger: 0.065,
-      delay: 1,
-      onComplete: () => {
-        // fade out animation
-        gsap.to(heroText.chars, {
-          y: 50, // moves down slightly
-          opacity: 0, // fades out
-          duration: 1,
-          stagger: 0.05,
-          delay: 1, // wait 2s after fade-in before fading out
-        });
-      },
-    });
-
+  useEffect(() => {
+    fetchDisplayName().then((name) => setDisplayName(name));
   }, []);
+
   return (
-    <ReactLenis root>
       <div className={styles.pageContainer} ref={container}>
-        <h1 className={styles.title} ref={titleRef}>
-          Welcome, user12345678.
-        </h1>
+        <AnimatedText text={`Welcome, ${displayName}`} />
       </div>
-    </ReactLenis>
   );
 }
