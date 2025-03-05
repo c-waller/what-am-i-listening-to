@@ -33,17 +33,20 @@ export default function Home()
         <Card 
           imgSrc="./hellp.jpeg" 
           title="Top Artists" 
+          showButton={false}
           // description="Check out your Top Artists "
         />
         <Card 
           imgSrc="./keshi.jpeg" 
           title="Top Genres" 
+          showButton={false}
           // description="Check out your Top Genres "
         />
 
         <Card 
           imgSrc="./alice.jpeg" 
           title="Top Albums" 
+          showButton={false}
           // description="Check out your Top Albums "
         />
       </div>

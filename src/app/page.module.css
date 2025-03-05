@@ -27,7 +27,7 @@
 {
     position: absolute;
     transform: translateX(-50%);
-    top: 2px;
+    top: 3px;
     left: 50%;
     pointer-events: none;
 }
