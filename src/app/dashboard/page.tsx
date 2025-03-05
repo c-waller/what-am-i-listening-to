@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useEffect, useState } from "react";
 import AnimatedText from "@/components/AnimatedText";
 import styles from "./dashboard.module.css";
+import Card from "@/components/Card";
 
 export default function Home() 
 {
@@ -14,9 +15,9 @@ export default function Home()
       const data = await response.json();
       return data.displayName;
     } 
-    catch (error) 
+    catch (error: any) 
     {
-      console.error("Error fetching display name:", error);
+      console.log("Error fetching display name");
     }
   }
   const [displayName, setDisplayName] = useState("user");
@@ -28,7 +29,23 @@ export default function Home()
 
   return (
       <div className={styles.pageContainer} ref={container}>
-        <AnimatedText text={`Welcome, ${displayName}!`} />
+        {/* <AnimatedText text={`Welcome, ${displayName}!`} /> */}
+        <Card 
+          imgSrc="./hellp.jpeg" 
+          title="Top Artists" 
+          // description="Check out your Top Artists "
+        />
+        <Card 
+          imgSrc="./keshi.jpeg" 
+          title="Top Genres" 
+          // description="Check out your Top Genres "
+        />
+
+        <Card 
+          imgSrc="./alice.jpeg" 
+          title="Top Albums" 
+          // description="Check out your Top Albums "
+        />
       </div>
   );
 }
