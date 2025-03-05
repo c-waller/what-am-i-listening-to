@@ -26,7 +26,7 @@ export async function GET()
     const userData = userDoc.data();
     const displayName = userData.spotifyUserDisplayName;
 
-    return NextResponse.json({ displayName }, { status: 200 });
+    return NextResponse.json({ isValidated: "Yes" }, { status: 200 });
   } 
   catch (error) 
   {
