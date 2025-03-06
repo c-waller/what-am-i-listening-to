@@ -2,7 +2,14 @@
 
 import { cookies } from 'next/headers';
 
-export async function refreshAccessToken(refreshToken: string, spotifyUserId: string) 
+type TokenResponse = 
+{
+  accessToken: string;
+  refreshToken: string;
+  accessTokenExpiresAt: number;
+}
+
+export async function refreshAccessToken(refreshToken: string, spotifyUserId: string): Promise<TokenResponse | null>
 {
   try 
   {
