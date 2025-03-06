@@ -13,7 +13,7 @@ export default function AuthButton()
   async function handleClick() 
   {
     setLoading(true);
-    setTimeout(() => router.push("/api/auth/login"), 1500); // redirect after 1.5 seconds
+    setTimeout(() => router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`), 1500); // redirect after 1.5 seconds
   }
 
   return (

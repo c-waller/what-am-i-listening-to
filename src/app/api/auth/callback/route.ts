@@ -12,7 +12,7 @@ export async function GET(req: NextRequest)
 
   if (!code) // code not in url, 9 times out of 10 shouldn't happen
   {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 
   const cookieStore = await cookies();
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest)
 
   if (!codeVerifier) // typically only fails because our cookie expired
   {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 
   // prepare the authorization header -> "Basic base64(clientId:clientSecret)"
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest)
 
     if (!response.ok) // token exchange failure
     {
-      return NextResponse.redirect("http://localhost:3000");
+      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
     }
 
     // ---------------------------------------------------------------------------------------------|
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest)
     
     if (!userResponse.ok) // user fetch failure
     {
-      return NextResponse.redirect("http://localhost:3000");
+      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
     }
 
     const userData = await userResponse.json();
@@ -92,10 +92,10 @@ export async function GET(req: NextRequest)
       await setDoc(userRef, { spotifyUserId, spotifyUserDisplayName, accessToken, refreshToken, accessTokenExpiresAt});
     }
     // redirect to top-artists after storing tokens
-    return NextResponse.redirect("http://localhost:3000/top-artists");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/top-artists`);
   } 
   catch (error: any) // this is the end of my huge try, something must've gone wrong
   {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 }

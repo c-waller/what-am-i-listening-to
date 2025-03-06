@@ -12,7 +12,7 @@ export async function GET()
 
   if (!userID) // make them log in
   {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 
   try 
@@ -22,12 +22,12 @@ export async function GET()
 
     if (!userDoc.exists()) // if it isnt an actual user id, make them log in
     {
-      return NextResponse.redirect("http://localhost:3000");
+      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
     }
     return NextResponse.json({ isValidated: "Yes" }, { status: 200 });
   } 
   catch (error) 
   {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 }

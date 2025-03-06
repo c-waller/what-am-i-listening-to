@@ -14,7 +14,7 @@ export async function GET()
 
   if (!userID) // validate user ID
   {
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 
   try 
@@ -25,7 +25,7 @@ export async function GET()
 
     if (!userDoc.exists()) // user doesnt exist
     {
-      return NextResponse.redirect("http://localhost:3000");
+      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
     }
 
     // retrieve user data including cached tracks and expiration
@@ -51,7 +51,7 @@ export async function GET()
 
       if (!refreshedTokens) 
       {
-        return NextResponse.redirect("http://localhost:3000");
+        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
       }
 
       // use refreshed tokens in firestore
@@ -87,6 +87,6 @@ export async function GET()
   catch (error) // end of my big try something mustve happened lol
   {
     console.error("Error fetching top tracks:", error);
-    return NextResponse.redirect("http://localhost:3000");
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }
 }
