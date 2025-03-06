@@ -18,7 +18,7 @@ export async function GET(req: NextRequest)
   const cookieStore = await cookies();
   const codeVerifier = cookieStore.get("codeVerifier")?.value; // retrieve the cookie we stored, check login api route for more details
 
-  if (!codeVerifier) // typically only fails because our cookie expired
+  if (!codeVerifier) // typically only fails because our cookie expired, user took too long to login
   {
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
   }

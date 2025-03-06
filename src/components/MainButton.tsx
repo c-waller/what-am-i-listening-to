@@ -5,7 +5,7 @@ import styles from "./MainButton.module.css";
 type MainButtonProps = 
 {
     children: React.ReactNode;
-    className?: string;
+    className?: string; // optional className attribute
 }
   
 export default function MainButton({ children, className }: MainButtonProps) 
