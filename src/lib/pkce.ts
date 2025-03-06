@@ -1,3 +1,5 @@
+// this file is responsible for creating the pkce verifier and challenge
+
 import pkceChallenge from 'pkce-challenge';
 
 export default async function getVerifierAndChallenge(): Promise<{ codeVerifier: string; codeChallenge: string } | null> 

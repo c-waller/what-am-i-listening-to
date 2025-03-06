@@ -1,4 +1,4 @@
-// route for getting top artists
+// route for getting top tracks
 // we either return json from cache, or return it from the api
 
 import { NextResponse } from "next/server";
@@ -12,7 +12,7 @@ export async function GET()
   const cookieStore = await cookies();
   const userID = cookieStore.get("userID")?.value; // check if userID cookie is present
 
-  if (!userID) 
+  if (!userID) // validate user ID
   {
     return NextResponse.redirect("http://localhost:3000");
   }
@@ -28,24 +28,25 @@ export async function GET()
       return NextResponse.redirect("http://localhost:3000");
     }
 
-    // retrieve user data including cached artists and expiration
+    // retrieve user data including cached tracks and expiration
     const userData = userDoc.data();
-    const cachedArtists = userData?.cachedArtists; // get cached artists
-    const cachedArtistsExpiry = userData?.cachedArtistsExpiry; // get cache expiration
+    const cachedTracks = userData?.cachedTracks; // get cached tracks
+    const cachedTracksExpiry = userData?.cachedTracksExpiry; // get cache expiration
 
     const currentTime = Date.now();
 
     // return cached tracks if they arent expired
-    if (cachedArtists && cachedArtistsExpiry && currentTime < cachedArtistsExpiry) 
+    if (cachedTracks && cachedTracksExpiry && currentTime < cachedTracksExpiry) 
     {
-      console.log("sent cached artist data 🐐");
-      return NextResponse.json({ items: cachedArtists }, { status: 200 });
+      console.log("sent cached track data 🐐");
+      return NextResponse.json({ items: cachedTracks }, { status: 200 });
     }
-
+    
     let { accessToken, refreshToken, accessTokenExpiresAt } = userData;
 
     // check if access token is expired, if it is, refresh it
-    if (Date.now() >= accessTokenExpiresAt) {
+    if (Date.now() >= accessTokenExpiresAt) 
+    {
       const refreshedTokens = await refreshAccessToken(refreshToken, userID);
 
       if (!refreshedTokens) 
@@ -63,29 +64,29 @@ export async function GET()
       accessToken = refreshedTokens.accessToken;
     }
 
-    // fetch top artists from api, caching didnt work
-    const response = await fetch("https://api.spotify.com/v1/me/top/artists?limit=8", {
+    // fetch top tracks from api, caching didnt work
+    const response = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=8", {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    if (!response.ok) throw new Error("Failed to fetch top artists");
+    if (!response.ok) throw new Error("Failed to fetch top tracks");
 
     const data = await response.json();
 
     // cache the api data in firestore
     const cacheExpiryTime = Date.now() + 3600000; // 1 hour
     await setDoc(userRef, {
-      cachedArtists: data.items,
-      cachedArtistsExpiry: cacheExpiryTime
+      cachedTracks: data.items,
+      cachedTracksExpiry: cacheExpiryTime
     }, { merge: true });
 
     // return the fetched data in the desired format
-    console.log("sent api artist data 💔");
+    console.log("sent api track data 💔");
     return NextResponse.json({ items: data.items }, { status: 200 });
   } 
-  catch (error) // end of my big try something mustve happened....
+  catch (error) // end of my big try something mustve happened lol
   {
-    console.error("Error fetching top artists:", error);
+    console.error("Error fetching top tracks:", error);
     return NextResponse.redirect("http://localhost:3000");
   }
 }

@@ -1,3 +1,5 @@
+// this file is responsible for constructing the spotify authorization url, see pkce.ts for more
+
 import getVerifierAndChallenge from "./pkce";
 
 export default async function getSpotifyLoginUrl(): Promise<{url: string, codeVerifier: string} | null>
@@ -21,5 +23,5 @@ export default async function getSpotifyLoginUrl(): Promise<{url: string, codeVe
     }
     const {codeVerifier, codeChallenge} = verifierAndChallenge;
     const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=code&code_challenge_method=S256&code_challenge=${codeChallenge}`;
-    return { url: loginUrl, codeVerifier: codeVerifier };
+    return { url: loginUrl, codeVerifier: codeVerifier }; // url and verifier returned together
 }

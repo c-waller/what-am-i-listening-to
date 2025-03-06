@@ -1,15 +1,19 @@
+// button responsible for authorization
+
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ Correct import for App Router
+import { useRouter } from "next/navigation";
 import styles from "./AuthButton.module.css";
 
-export default function AuthButton() {
+export default function AuthButton() 
+{
   const [loading, setLoading] = useState(false);
-  const router = useRouter(); // ✅ Works in Next.js 13+ App Router
+  const router = useRouter();
 
-  async function handleClick() {
+  async function handleClick() 
+  {
     setLoading(true);
-    setTimeout(() => router.push("/api/auth/login"), 1500);
+    setTimeout(() => router.push("/api/auth/login"), 1500); // redirect after 1.5 seconds
   }
 
   return (

@@ -1,4 +1,5 @@
-import Image from "next/image";
+// authorization page
+
 import styles from "./auth.module.css";
 import AuthButton from "@/components/AuthButton";
 

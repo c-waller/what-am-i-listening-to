@@ -1,3 +1,5 @@
+// route for redirecting the user after authorization
+
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { database } from "@/lib/firebase.config";
@@ -89,8 +91,8 @@ export async function GET(req: NextRequest)
     {
       await setDoc(userRef, { spotifyUserId, spotifyUserDisplayName, accessToken, refreshToken, accessTokenExpiresAt});
     }
-    // redirect to dashboard after storing tokens
-    return NextResponse.redirect("http://localhost:3000/dashboard");
+    // redirect to top-artists after storing tokens
+    return NextResponse.redirect("http://localhost:3000/top-artists");
   } 
   catch (error: any) // this is the end of my huge try, something must've gone wrong
   {
